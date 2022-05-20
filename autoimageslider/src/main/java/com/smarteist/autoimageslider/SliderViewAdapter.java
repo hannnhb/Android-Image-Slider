@@ -11,8 +11,8 @@ import java.util.Queue;
 
 
 public abstract class SliderViewAdapter<VH extends SliderViewAdapter.ViewHolder> extends PagerAdapter {
-
     private DataSetListener dataSetListener;
+    private static final float ARG_WIDTH_ITEM= 1f;
 
     //Default View holder class
     public static abstract class ViewHolder {
@@ -37,6 +37,15 @@ public abstract class SliderViewAdapter<VH extends SliderViewAdapter.ViewHolder>
         onBindViewHolder(viewHolder, position);
 
         return viewHolder;
+    }
+
+    @Override
+    public float getPageWidth(int position) {
+        float percentage = ARG_WIDTH_ITEM;
+        if (getPageItemWidth() != 0) {
+            percentage = getPageItemWidth();
+        }
+        return percentage;
     }
 
     @Override
@@ -78,6 +87,13 @@ public abstract class SliderViewAdapter<VH extends SliderViewAdapter.ViewHolder>
      * @param position   item position
      */
     public abstract void onBindViewHolder(VH viewHolder, int position);
+
+
+    /**
+     * Set item percentage of screen
+     */
+     public abstract float getPageItemWidth();
+
 
     void dataSetChangedListener(SliderViewAdapter.DataSetListener dataSetListener) {
         this.dataSetListener = dataSetListener;

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
+import com.smarteist.autoimageslider.SliderView;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 import com.smarteist.imageslider.Model.SliderItem;
 import java.util.ArrayList;
@@ -64,6 +65,11 @@ public class SliderAdapterExample extends
                 Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public float getPageItemWidth() {
+        return 1f;
     }
 
     @Override
